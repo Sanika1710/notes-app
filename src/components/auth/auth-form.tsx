@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation'; // ✅ Use next/navigation instead of next/router
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +14,7 @@ export default function AuthForm() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
-
+  const router = useRouter();
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -23,6 +24,7 @@ export default function AuthForm() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Signed in successfully");
+        router.push('/dashboard');
       } else {
         const { error } = await supabase.auth.signUp({
           email,
