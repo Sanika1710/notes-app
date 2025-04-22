@@ -120,7 +120,7 @@ export function NoteForm({ note, onSave, onCancel }: NoteFormProps) {
                         Cancel
                     </Button>
                     <div className="flex space-x-2">
-                        <Button
+                        {/* <Button
                             type="button"
                             variant="outline"
                             onClick={handleSummary}
@@ -132,7 +132,7 @@ export function NoteForm({ note, onSave, onCancel }: NoteFormProps) {
                                     Summarizing...
                                 </>
                             ) : "Generate Summary"}
-                        </Button>
+                        </Button> */}
                         <Button type="submit" disabled={isSaving}>
                             {isSaving ? (
                                 <>
