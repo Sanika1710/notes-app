@@ -18,7 +18,7 @@ interface NoteFormProps {
 export function NoteForm({ note, onSave, onCancel }: NoteFormProps) {
     const [title, setTitle] = useState(note?.title || '');
     const [content, setContent] = useState(note?.content || '');
-    const [isSummarizing, setIsSummarizing] = useState(false);
+    const [, setIsSummarizing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
