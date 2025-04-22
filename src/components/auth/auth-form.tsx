@@ -32,8 +32,12 @@ export default function AuthForm() {
         if (error) throw error;
         toast.success("Sign up successful. Please check your email for verification.");
       }
-    } catch (error: any) {
-      toast.error("Authentication error: " + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error("Authentication error: " + error.message);
+      } else {
+        toast.error("An unknown error occurred.");
+      }
     } finally {
       setLoading(false);
     }
@@ -46,8 +50,12 @@ export default function AuthForm() {
         options: { redirectTo: `${window.location.origin}/auth/callback` },
       });
       if (error) throw error;
-    } catch (error: any) {
-      toast.error("Google sign in error: " + error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error("Google sign in error: " + error.message);
+      } else {
+        toast.error("An unknown error occurred.");
+      }
     }
   };
 

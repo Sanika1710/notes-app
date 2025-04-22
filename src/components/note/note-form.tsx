@@ -39,7 +39,7 @@ export function NoteForm({ note, onSave, onCancel }: NoteFormProps) {
             const summary = await summarizeText(content);
             toast.success("Summary is generated and will be added to your note automatically.");
             return summary;
-        } catch (error) {
+        } catch {
             toast.error("Failed to generate summary. Please try again later");
             return null;
         } finally {
@@ -75,8 +75,12 @@ export function NoteForm({ note, onSave, onCancel }: NoteFormProps) {
             }
 
             onSave();
-        } catch (error: any) {
-            toast.error(error.message || "Failed to save note");
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                toast.error(error.message || "Failed to save note");
+            } else {
+                toast.error("An unknown error occurred.");
+            }
         } finally {
             setIsSaving(false);
         }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button } from "@/components/ui/button";
 import AuthForm from '@/components/auth/auth-form';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';

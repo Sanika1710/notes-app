@@ -67,10 +67,12 @@ export default function Dashboard() {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       toast.success("Your note has been successfully deleted");
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        toast.error(`Failed to delete note: ${error.message}`);
+      } else {
         toast.error("Failed to delete note");
-      
-        
+      }
     },
   });
 
